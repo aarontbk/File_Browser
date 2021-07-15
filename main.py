@@ -1,5 +1,8 @@
-import create_file, open_file, browse_files
 import os.path
+
+import browse_files
+import create_file
+import open_file
 
 path = "C:\\"
 num = 1
@@ -31,7 +34,7 @@ except:
 if ans == 1:
     name = input("file name: ")
     content = input("file content: ")
-    create_file.CreateFile(name, content)
+    create_file.create_file(name, content)
 elif ans == 2:
     name = input("file name: ")
     open_file.OpenFile(name)
