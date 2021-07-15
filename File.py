@@ -7,5 +7,6 @@ class File:
         self.creation_date = os.path.getctime(path)
         self.size = os.path.getsize(path)
 
+    @property
     def __str__(self):
         return f"Name: {self.name}, creation date: {self.creation_date}, size: {self.size}"

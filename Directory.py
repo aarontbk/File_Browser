@@ -22,5 +22,7 @@ class Directory:
                 folders.append(str(num) + " - " + file)
                 num += 1
             else:
-                files.append(file)
+                f1 = File.File(os.path.join(self.path, file))
+                files.append(f1.__str__)
+
         return f'Files:\n{[file for file in files]}\nFolders:\n{[folder for folder in folders]}\n'
