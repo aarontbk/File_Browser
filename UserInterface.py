@@ -1,5 +1,4 @@
 import Directory
-import File
 
 
 class UserInterface:
@@ -12,6 +11,4 @@ class UserInterface:
             if ans.lower() == "dir":
                 d = Directory.Directory(self.path)
                 print(d.print_items)
-                # f = File.File(self.path)
-                # print(f.__str__())
             ans = input("What do you want to do: ")
