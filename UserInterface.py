@@ -3,9 +3,6 @@ import os
 import Directory
 
 
-# support following options:
-# copy file: file_name, new_file_name
-
 class UserInterface:
     def __init__(self, path):
         self.path = path
@@ -37,7 +34,11 @@ class UserInterface:
 
             elif ans.split(" ")[0] == "delete" and ans.split(" ")[1] in files:
                 print(self.delete(os.path.join(path, ans.split(" ")[1])))
+
+            elif ans.split(" ")[0] == "copy" and ans.split(" ")[1] in files:
+                print(self.copy(os.path.join(path, ans.split(" ")[1]), os.path.join(path, input("New file name: "))))
             ans = input(que)
+
 
     def print_path(self, path):
         return path
@@ -49,3 +50,15 @@ class UserInterface:
     def delete(self, name):
         os.remove(name)
         return f"Deleted: {name}"
+
+    def copy(self, name, new_name):
+        file = open(name, "r")
+        file_content = file.read()
+        file.close()
+
+        new_file = open(new_name, "w")
+        new_file.write(file_content)
+        new_file.close()
+
+        return f"Copied {name} to new file: {new_name}"
+
