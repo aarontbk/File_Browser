@@ -5,7 +5,7 @@ import File
 class Directory:
     def __init__(self, path):
         self.path = path
-        self.name = os.path.basename(path)  # CR: try to improve this line
+        self.name = os.path.basename(path)
         self.creation_date = os.path.getctime(path)
 
     def __str__(self):
