@@ -5,9 +5,6 @@ import Directory
 
 # support following options:
 # copy file: file_name, new_file_name
-# delete file: file_name
-# rename file: file_name, new_file_name
-#
 
 class UserInterface:
     def __init__(self, path):
@@ -24,16 +21,22 @@ class UserInterface:
                 path = self.path
                 d, folders, files = Directory.Directory(path).print_items()
                 print(d)
+
             elif ans == "path":
                 print(self.print_path(path))
+
             elif ans in folders:
                 path = os.path.join(path, ans)
                 d, folders, files = Directory.Directory(path).print_items()
                 print(d)
+
             elif ans.split(" ")[0] == "rename" and ans.split(" ")[1] in files:
                 old_name = os.path.join(path, ans.split(" ")[1])
                 new_name = os.path.join(path, input("New file name: "))
                 print(self.rename(old_name, new_name))
+
+            elif ans.split(" ")[0] == "delete" and ans.split(" ")[1] in files:
+                print(self.delete(os.path.join(path, ans.split(" ")[1])))
             ans = input(que)
 
     def print_path(self, path):
@@ -42,3 +45,7 @@ class UserInterface:
     def rename(self, old_name, new_name):
         os.rename(old_name, new_name)
         return f"Renamed {old_name} as: {new_name}"
+
+    def delete(self, name):
+        os.remove(name)
+        return f"Deleted: {name}"
