@@ -1,5 +1,5 @@
 import UserInterface
 
-
-ui = UserInterface.UserInterface("C:\\")
+# C:\\
+ui = UserInterface.UserInterface("F:\Games On F")
 ui.start()

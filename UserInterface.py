@@ -22,15 +22,23 @@ class UserInterface:
         while ans.lower() != "quit":
             if ans == "dir":
                 path = self.path
-                d, f = Directory.Directory(path).print_items()
+                d, folders, files = Directory.Directory(path).print_items()
                 print(d)
             elif ans == "path":
                 print(self.print_path(path))
-            elif ans in f:
+            elif ans in folders:
                 path = os.path.join(path, ans)
-                d, f = Directory.Directory(path).print_items()
+                d, folders, files = Directory.Directory(path).print_items()
                 print(d)
+            elif ans.split(" ")[0] == "rename" and ans.split(" ")[1] in files:
+                old_name = os.path.join(path, ans.split(" ")[1])
+                new_name = os.path.join(path, input("New file name: "))
+                print(self.rename(old_name, new_name))
             ans = input(que)
 
     def print_path(self, path):
         return path
+
+    def rename(self, old_name, new_name):
+        os.rename(old_name, new_name)
+        return f"Renamed {old_name} as: {new_name}"
