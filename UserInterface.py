@@ -8,11 +8,11 @@ class UserInterface:
         self.path = path
 
     def start(self):
-        que: str = "What do you want to do: "
+        que: str = f"{self.path}: "
         ans: str = input(que)
-        self.usage(que, ans)
+        self.usage(ans)
 
-    def usage(self, que, ans):
+    def usage(self, ans):
         while ans.lower() != "quit":
             if ans == "dir":
                 path = self.path
@@ -37,7 +37,7 @@ class UserInterface:
 
             elif ans.split(" ")[0] == "copy" and ans.split(" ")[1] in files:
                 print(self.copy(os.path.join(path, ans.split(" ")[1]), os.path.join(path, input("New file name: "))))
-            ans = input(que)
+            ans = input(f"{path}: ")
 
 
     def print_path(self, path):
