@@ -12,6 +12,8 @@ class UserInterface:
         ans: str = input(que)
         self.usage(ans)
 
+        # CR: improve this loop. split to functions and simplify the cases
+        # CR: code is hard to read
     def usage(self, ans):
         while ans.lower() != "quit":
             try:
@@ -33,6 +35,7 @@ class UserInterface:
                     new_name = os.path.join(path, input("New file name: "))
                     print(self.rename(old_name, new_name))
 
+                        # CR: this is ugly
                 elif ans.split(" ")[0] == "delete" and ans.split(" ")[1] in files:
                     print(self.delete(os.path.join(path, ans.split(" ")[1])))
 
@@ -48,6 +51,7 @@ class UserInterface:
     def print_path(self, path):
         return path
 
+    # CR: implement these in different classes with inheritence
     def rename(self, old_name, new_name):
         os.rename(old_name, new_name)
         return f"Renamed {old_name} as: {new_name}"
